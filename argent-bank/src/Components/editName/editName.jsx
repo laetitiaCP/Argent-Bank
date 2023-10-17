@@ -1,9 +1,13 @@
 import "./editName.scss";
 import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {setInfos} from "../../actions/setInfos";
+
 function EditName({firstname, lastname}) {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const dispatch = useDispatch();
 
     function onChangeFirstname(e) {
         setFirstName(e.target.value);
@@ -14,11 +18,21 @@ function EditName({firstname, lastname}) {
     }
 
     function cancelButton() {
-
+        window.location.reload();
     }
 
-    function saveButton() {
-
+    function saveButton(e) {
+        e.preventDefault();
+        console.log(firstName)
+        console.log(lastName)
+        dispatch(setInfos(firstName, lastName))
+            .then(() => {
+                console.log('ok');
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        window.location.reload();
     }
 
     return (

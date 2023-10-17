@@ -1,16 +1,49 @@
 import "./user.scss";
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";
+import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {userInfos} from "../../actions/userInfos";
+import EditName from "../../Components/editName/editName";
 
 function User() {
+    const dispatch = useDispatch();
+    const [dataUser, setDataUser] = useState();
+    const { isLoggedIn } = useSelector(state => state.auth);
+    let firstname = "";
+    let lastname = "";
+    const [isDisplay, setIsDisplay] = useState(false);
+
+    useEffect( () => {
+        dispatch(userInfos()).then( (response) => {
+            setDataUser(response);
+        })
+    }, [isLoggedIn])
+    if (dataUser !== undefined) {
+        firstname = dataUser.firstName;
+        lastname = dataUser.lastName;
+    }
+
+
+    function editUsername() {
+        setIsDisplay(true);
+    }
+
     return (
         <div>
-            <Header />
+            <Header logged={isLoggedIn} firstname={firstname}/>
             <main className="main bg-dark">
-                <div className="header">
-                    <h1>Welcome back<br/>Tony Jarvis!</h1>
-                    <button className="edit-button">Edit Name</button>
-                </div>
+                {!isDisplay &&
+                    <div className="header" id="header">
+                        <h1>Welcome back<br/>{firstname} {lastname}!</h1>
+                        <button className="edit-button" onClick={editUsername}>Edit Name</button>
+                    </div>
+                }
+                { isDisplay &&
+                    <EditName firstname={firstname} lastname={lastname}/>
+                }
+
                 <h2 className="sr-only">Accounts</h2>
                 <section className="account">
                     <div className="account-content-wrapper">

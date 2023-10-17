@@ -9,7 +9,7 @@ export const userInfos = () => (dispatch) => {
                 payload: { info:data },
             });
 
-            return data
+            return data;
         },
         (error) => {
             const message =
