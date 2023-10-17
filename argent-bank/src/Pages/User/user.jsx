@@ -14,12 +14,17 @@ function User() {
     let firstname = "";
     let lastname = "";
     const [isDisplay, setIsDisplay] = useState(false);
+    const [token, setToken] = useState("");
 
     useEffect( () => {
-        dispatch(userInfos()).then( (response) => {
-            setDataUser(response);
-        })
-    }, [isLoggedIn])
+        setToken(localStorage.getItem("token"));
+        if(token !== null) {
+            dispatch(userInfos()).then( (response) => {
+                setDataUser(response);
+            })
+        }
+        }, [token])
+
     if (dataUser !== undefined) {
         firstname = dataUser.firstName;
         lastname = dataUser.lastName;

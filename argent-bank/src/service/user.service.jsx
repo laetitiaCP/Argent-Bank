@@ -5,6 +5,7 @@ const token = JSON.parse(localStorage.getItem("user"));
 axios.defaults.headers.common['Authorization'] = "Bearer" + token;
 
 const getUserInfos = () => {
+    console.log(token)
     return axios
         .post(BASE_API_URL + "/profile")
         .then( (response) => {
@@ -21,7 +22,6 @@ const setUserInfos = (firstname, lastname) => {
     return axios
         .put(BASE_API_URL + "/profile", newData)
         .then( (response) => {
-            console.log(response)
             return response.data;
         })
 }

@@ -36,7 +36,7 @@ function SignIn(props) {
             dispatch(login(username, password))
                 .then(() => {
                     navigate("/profile");
-                    //window.location.reload();
+                    window.location.reload();
                 })
                 .catch(() => {
                     setLoading(false);
