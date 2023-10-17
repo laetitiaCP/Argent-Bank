@@ -23,11 +23,9 @@ function EditName({firstname, lastname}) {
 
     function saveButton(e) {
         e.preventDefault();
-        console.log(firstName)
-        console.log(lastName)
         dispatch(setInfos(firstName, lastName))
             .then(() => {
-                console.log('ok');
+                console.log('firstname et lastname modifiés');
             })
             .catch((error) => {
                 console.log(error);

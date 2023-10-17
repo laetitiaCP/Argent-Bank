@@ -9,11 +9,9 @@ const login = (email, password) => {
             password,
         })
         .then((response) => {
-            console.log(response.data.body.token)
             if (response.data.body.token) {
                 localStorage.setItem("user", JSON.stringify(response.data.body.token));
             }
-
             return response.data;
         });
 };

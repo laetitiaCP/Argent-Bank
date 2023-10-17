@@ -1,7 +1,7 @@
 import "./signIn.scss";
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {useNavigate, Navigate} from "react-router-dom";
 import {login} from "../../actions/auth";
@@ -11,12 +11,19 @@ function SignIn(props) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
-    let isChecked = true;
+    const [rememberMe, setRememberMe] = useState(false);
+    let locEmail = localStorage.getItem("email");
 
     const { isLoggedIn } = useSelector(state => state.auth);
 
     const dispatch = useDispatch();
+
+    useEffect( () => {
+        if (locEmail !== null) {
+            setRememberMe(true);
+            setUsername(locEmail);
+        }
+    },[locEmail]);
 
     const onChangeUsername = (e) => {
         const username = e.target.value;
@@ -30,24 +37,28 @@ function SignIn(props) {
 
     const handleLogin = (e) => {
         e.preventDefault();
+        if (rememberMe) {
+            localStorage.setItem("email", username);
+        } else {
+            localStorage.removeItem("email");
+            }
 
-        setLoading(true);
-        if (isChecked === true) {
-            dispatch(login(username, password))
+        dispatch(login(username, password))
                 .then(() => {
                     navigate("/profile");
                     window.location.reload();
                 })
-                .catch(() => {
-                    setLoading(false);
+                .catch((error) => {
+                    console.log(error)
                 });
-        } else {
-            setLoading(false);
-        }
     };
 
     if (isLoggedIn) {
         return <Navigate to="/profile" />;
+    }
+
+    const handleRememberMe = () => {
+        setRememberMe(!rememberMe);
     }
 
     return (
@@ -77,7 +88,7 @@ function SignIn(props) {
                             />
                         </div>
                         <div className="input-remember">
-                            <input type="checkbox" id="remember-me"/>
+                            <input type="checkbox" id="remember-me" checked={rememberMe} onChange={handleRememberMe}/>
                             <label htmlFor="remember-me">Remember me</label>
                         </div>
                         <button className="sign-in-button" type="submit">
