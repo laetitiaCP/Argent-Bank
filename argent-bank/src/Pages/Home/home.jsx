@@ -6,9 +6,10 @@ import iconSecurity from "../../Images/icon-security.png";
 import Footer from "../../Components/Footer/footer";
 
 function Home() {
+
     return (
         <div>
-            <Header />
+            <Header logged={false}/>
             <main>
                 <div className="hero">
                     <section className="hero-content">
