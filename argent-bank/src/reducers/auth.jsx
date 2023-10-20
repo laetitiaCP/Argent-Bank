@@ -10,6 +10,13 @@ const initialState = user
     ? { isLoggedIn: true, user }
     : { isLoggedIn: false, user: null };
 
+/**
+ * reducer authentification
+ * @param {Object} state initial state
+ * @param {Object} action
+ * @returns {{isLoggedIn: boolean, user: null}|{isLoggedIn: boolean, user: any}|{isLoggedIn: boolean, user: null}|{isLoggedIn: boolean, user: (null|number|string|any|PublicKeyCredentialUserEntity)}}
+ */
+// eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
     const { type, payload } = action;
 

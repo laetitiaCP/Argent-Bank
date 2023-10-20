@@ -5,6 +5,10 @@ import rootReducer from "./reducers";
 
 const middleware = [thunk];
 
+/**
+ * store for use Redux in app
+ * @type {Store<EmptyObject & S & {}, AnyAction> & Store<S & {}, A> & {dispatch: ThunkDispatch<any, undefined, AnyAction>}}
+ */
 const store = createStore(
     rootReducer,
     composeWithDevTools(applyMiddleware(...middleware))

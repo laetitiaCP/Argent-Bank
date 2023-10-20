@@ -4,6 +4,11 @@ import Home from "./Pages/Home/home";
 import SignIn from "./Pages/SignIn/signIn";
 import User from "./Pages/User/user";
 
+/**
+ * All routes of app
+ * @returns {JSX.Element} return element with app path defined
+ * @constructor
+ */
 function RoutesApp() {
   return (
     <Routes>

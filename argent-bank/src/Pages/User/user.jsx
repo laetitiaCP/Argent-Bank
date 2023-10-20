@@ -7,6 +7,11 @@ import {useDispatch} from "react-redux";
 import {userInfos} from "../../actions/userInfos";
 import EditName from "../../Components/editName/editName";
 
+/**
+ * user's bank account component
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function User() {
     const dispatch = useDispatch();
     const [dataUser, setDataUser] = useState();
@@ -23,6 +28,7 @@ function User() {
                 setDataUser(response);
             })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [token])
 
     if (dataUser !== undefined) {

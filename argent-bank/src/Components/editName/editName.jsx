@@ -3,24 +3,46 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {setInfos} from "../../actions/setInfos";
 
+/**
+ * editName component
+ * @param {string} firstname firstname in db
+ * @param lastname lastname in db
+ * @returns {JSX.Element} return component to edit firstname and lastname
+ * @constructor
+ */
 function EditName({firstname, lastname}) {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const dispatch = useDispatch();
 
+    /**
+     * get firstname entered by user
+     * @param {object} e event
+     */
     function onChangeFirstname(e) {
         setFirstName(e.target.value);
     }
 
+    /**
+     * get lastname entered by user
+     * @param {object} e event
+     */
     function onChangeLastname(e) {
         setLastName(e.target.value);
     }
 
+    /**
+     * action on button click to cancel
+     */
     function cancelButton() {
         window.location.reload();
     }
 
+    /**
+     * action on button click to save informations
+     * @param {Object} e event
+     */
     function saveButton(e) {
         e.preventDefault();
         dispatch(setInfos(firstName, lastName))

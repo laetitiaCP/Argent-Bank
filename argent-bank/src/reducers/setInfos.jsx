@@ -7,6 +7,13 @@ const initialState = {
     }
 }
 
+/**
+ * set user's informations reducer
+ * @param {Object} state
+ * @param {Object} action
+ * @returns {{setInfos: {firstname: string, lastname: string}}|{setInfos: null}|{setInfos: {firstname: (string|*), lastname: (string|*)}}}
+ */
+// eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
     const {type, payload} = action;
 

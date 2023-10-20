@@ -6,7 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {useNavigate, Navigate} from "react-router-dom";
 import {login} from "../../actions/auth";
 
-function SignIn(props) {
+/**
+ * Login page
+ * @returns {JSX.Element} return login page
+ * @constructor
+ */
+function SignIn() {
     let navigate = useNavigate();
 
     const [username, setUsername] = useState("");
@@ -25,16 +30,28 @@ function SignIn(props) {
         }
     },[locEmail]);
 
+    /**
+     * get username entered by user
+     * @param {Object} e event on input
+     */
     const onChangeUsername = (e) => {
         const username = e.target.value;
         setUsername(username);
     };
 
+    /**
+     * get password entered by user
+     * @param {Object} e event on input
+     */
     const onChangePassword = (e) => {
         const password = e.target.value;
         setPassword(password);
     };
 
+    /**
+     * action on submit button
+     * @param {Object} e event on submit button
+     */
     const handleLogin = (e) => {
         e.preventDefault();
         if (rememberMe) {

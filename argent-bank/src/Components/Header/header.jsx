@@ -1,10 +1,17 @@
 import "./header.scss";
 import logoBank from "../../Images/argentBankLogo.png";
-import {useCallback, useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useCallback} from "react";
+import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 import {logout} from "../../actions/auth";
 
+/**
+ * header component
+ * @param {boolean} logged if logged, login button display else button logout display
+ * @param {string} firstname firstname user to display
+ * @returns {JSX.Element} return header component
+ * @constructor
+ */
 function Header({logged, firstname}) {
     const dispatch = useDispatch();
 
@@ -32,7 +39,7 @@ function Header({logged, firstname}) {
             }
             {logged &&
                 <div>
-                    <a className="main-nav-item">
+                    <a className="main-nav-item" href="/profile">
                         <i className="fa fa-user-circle"></i>
                         {firstname}
                     </a>

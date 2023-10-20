@@ -1,6 +1,12 @@
 import UserService from "../service/user.service";
-import {SET_INFOS_FAIL, SET_INFOS_SUCCESS, SET_MESSAGE, USER_INFOS_FAIL} from "./type";
+import {SET_INFOS_FAIL, SET_INFOS_SUCCESS, SET_MESSAGE} from "./type";
 
+/**
+ * action of modifying user informations
+ * @param {string} firstname new firstname user
+ * @param {string} lastname new lastname user
+ * @returns {function(*): Promise<unknown>} return promise
+ */
 export const setInfos = (firstname, lastname) => (dispatch) => {
     return UserService.setUserInfos(firstname, lastname).then(
         (data) => {

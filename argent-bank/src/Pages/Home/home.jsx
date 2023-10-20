@@ -5,6 +5,11 @@ import iconMoney from "../../Images/icon-money.png";
 import iconSecurity from "../../Images/icon-security.png";
 import Footer from "../../Components/Footer/footer";
 
+/**
+ * Home page
+ * @returns {JSX.Element} return home page
+ * @constructor
+ */
 function Home() {
 
     return (

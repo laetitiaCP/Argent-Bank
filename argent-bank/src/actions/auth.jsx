@@ -7,6 +7,12 @@ import {
 
 import AuthService from "../service/auth.service";
 
+/**
+ * action of connecting
+ * @param {string} username username entered
+ * @param {string }password password entered
+ * @returns {function(*): Promise<void>} return a promise
+ */
 export const login = (username, password) => (dispatch) => {
     return AuthService.login(username, password).then(
         (data) => {
@@ -39,6 +45,10 @@ export const login = (username, password) => (dispatch) => {
     );
 };
 
+/**
+ * action of disconnecting
+ * @returns {(function(*): void)|*}
+ */
 export const logout = () => (dispatch) => {
     AuthService.logout();
 

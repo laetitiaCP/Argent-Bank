@@ -1,6 +1,10 @@
 import UserService from "../service/user.service";
 import {SET_MESSAGE, USER_INFOS_FAIL, USER_INFOS_SUCCESS} from "./type";
 
+/**
+ * action of receiving user informations
+ * @returns {function(*): Promise<unknown>} return promise
+ */
 export const userInfos = () => (dispatch) => {
     return UserService.getUserInfos().then(
         (data) => {
