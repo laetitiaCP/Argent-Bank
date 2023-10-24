@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {userInfos} from "../../actions/userInfos";
 import EditName from "../../Components/editName/editName";
+import Error from "../Erreurs/Error";
 
 /**
  * user's bank account component
@@ -24,9 +25,13 @@ function User() {
     useEffect( () => {
         setToken(localStorage.getItem("token"));
         if(token !== null) {
-            dispatch(userInfos()).then( (response) => {
-                setDataUser(response);
+            dispatch(userInfos())
+                .then( (response) => {
+                    setDataUser(response);
             })
+                .catch( error => {
+                    console.log(error)
+                })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [token])
@@ -39,6 +44,9 @@ function User() {
 
     function editUsername() {
         setIsDisplay(true);
+    }
+    if (!isLoggedIn) {
+        return <Error errorCode="401" text="Unauthorized" />
     }
 
     return (

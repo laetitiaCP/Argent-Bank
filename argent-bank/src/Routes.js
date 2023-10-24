@@ -3,6 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import Home from "./Pages/Home/home";
 import SignIn from "./Pages/SignIn/signIn";
 import User from "./Pages/User/user";
+import Error from "./Pages/Erreurs/Error";
 
 /**
  * All routes of app
@@ -15,6 +16,7 @@ function RoutesApp() {
         <Route path="/" element={<Home />}/>
         <Route path="/login" element={<SignIn />} />
         <Route path="/profile" element={<User />} />
+        <Route path="*" element={<Error errorCode="404" text="Cette page n'existe pas" />} />
     </Routes>
   )
 }

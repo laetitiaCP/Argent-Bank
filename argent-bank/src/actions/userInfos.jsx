@@ -12,10 +12,11 @@ export const userInfos = () => (dispatch) => {
                 type: USER_INFOS_SUCCESS,
                 payload: { info:data },
             });
-
+            console.log(data)
             return data;
         },
         (error) => {
+            console.log(error)
             const message =
                 (error.response &&
                     error.response.data &&

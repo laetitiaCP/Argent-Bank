@@ -21,6 +21,7 @@ export default function (state = initialState, action) {
 
     switch (type) {
         case USER_INFOS_SUCCESS:
+            console.log(type)
             return {
                 ...state,
                 info: {
